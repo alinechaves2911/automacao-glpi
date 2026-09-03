@@ -279,7 +279,8 @@ Comportamento por dependência externa:
 
 ## Autora
 
-**Aline Chaves** — Banco de Dados, Infraestrutura, Automação e Observabilidade.
+**Aline Chaves** 
+
 
 ## Licença
 
