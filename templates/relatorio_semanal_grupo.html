@@ -1,0 +1,237 @@
+{% extends "base_email.html" %}
+
+{% block conteudo %}
+
+
+<!-- ========================================================= -->
+<!-- SITUAÇÃO ATUAL -->
+<!-- ========================================================= -->
+
+<h2 class="secao">Situação Atual por Grupo</h2>
+
+{% if tabelas.situacao_atual %}
+
+<table class="kpi-grid">
+    <tr>
+
+        <td class="kpi-card">
+            <span class="kpi-label">Total Ativos</span>
+            <span class="kpi-value">
+                {{ kpis.situacao_total_ativos
+                   | default(situacao_total_ativos, true)
+                   | default(0, true) }}
+            </span>
+        </td>
+
+        <td class="kpi-card">
+            <span class="kpi-label">Novos</span>
+            <span class="kpi-value">
+                {{ kpis.situacao_novos
+                   | default(situacao_novos, true)
+                   | default(0, true) }}
+            </span>
+        </td>
+
+        <td class="kpi-card">
+            <span class="kpi-label">Em Atendimento</span>
+            <span class="kpi-value">
+                {{ kpis.situacao_em_atendimento
+                   | default(situacao_em_atendimento, true)
+                   | default(0, true) }}
+            </span>
+        </td>
+
+        <td class="kpi-card alerta">
+            <span class="kpi-label">Pendentes</span>
+            <span class="kpi-value">
+                {{ kpis.situacao_pendentes
+                   | default(situacao_pendentes, true)
+                   | default(0, true) }}
+            </span>
+        </td>
+
+        <td class="kpi-card alerta">
+            <span class="kpi-label">Alta Prioridade</span>
+            <span class="kpi-value">
+                {{ kpis.situacao_alta_prioridade
+                   | default(situacao_alta_prioridade, true)
+                   | default(0, true) }}
+            </span>
+        </td>
+
+    </tr>
+</table>
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhum dado de situação atual disponível.
+</p>
+
+{% endif %}
+
+
+<!-- ========================================================= -->
+<!-- RESUMO SEMANAL -->
+<!-- ========================================================= -->
+
+<h2 class="secao">Resumo Semanal</h2>
+
+{% if tabelas.resumo_semanal %}
+
+<table class="kpi-grid">
+    <tr>
+
+        <td class="kpi-card">
+            <span class="kpi-label">Abertos na Semana</span>
+            <span class="kpi-value">
+                {{ kpis.resumo_abertos
+                   | default(resumo_abertos, true)
+                   | default(0, true) }}
+            </span>
+        </td>
+
+        <td class="kpi-card sucesso">
+            <span class="kpi-label">Resolvidos na Semana</span>
+            <span class="kpi-value">
+                {{ kpis.resumo_resolvidos
+                   | default(resumo_resolvidos, true)
+                   | default(0, true) }}
+            </span>
+        </td>
+
+    </tr>
+</table>
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhum resumo semanal disponível.
+</p>
+
+{% endif %}
+
+
+<!-- ========================================================= -->
+<!-- CHAMADOS POR TÉCNICO -->
+<!-- ========================================================= -->
+
+<h2 class="secao">Chamados por Técnico (7 dias)</h2>
+
+{% if graficos_por_cid and graficos_por_cid.grafico_tecnico_7d %}
+
+<img
+    src="cid:grafico_tecnico_7d"
+    alt="Chamados por Técnico nos últimos 7 dias"
+    style="
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 15px auto 25px auto;
+    "
+>
+
+{% elif tabelas.status_tecnico_7d %}
+
+{{ tabelas.status_tecnico_7d | safe }}
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhum dado de chamados por técnico para o período.
+</p>
+
+{% endif %}
+
+
+<!-- ========================================================= -->
+<!-- SLA -->
+<!-- ========================================================= -->
+
+<h2 class="secao">Eficácia de SLA da Semana</h2>
+
+{% if graficos_por_cid and graficos_por_cid.grafico_sla_semanal %}
+
+<img
+    src="cid:grafico_sla_semanal"
+    alt="Eficácia de SLA da Semana"
+    style="
+        max-width: 450px;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 15px auto 25px auto;
+    "
+>
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhum gráfico de SLA disponível para o período.
+</p>
+
+{% endif %}
+
+
+{% if tabelas.sla_semanal %}
+
+{{ tabelas.sla_semanal | safe }}
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhum dado de SLA para o período.
+</p>
+
+{% endif %}
+
+
+<!-- ========================================================= -->
+<!-- REABERTURAS -->
+<!-- ========================================================= -->
+
+<h2 class="secao">Chamados Reabertos</h2>
+
+{% if tabelas.reaberturas %}
+
+{{ tabelas.reaberturas | safe }}
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhuma reabertura no período.
+</p>
+
+{% endif %}
+
+
+<!-- ========================================================= -->
+<!-- TEMPO MÉDIO -->
+<!-- ========================================================= -->
+
+<h2 class="secao">Tempo Médio de Atendimento</h2>
+
+{% if tabelas.tempo_medio %}
+
+{{ tabelas.tempo_medio | safe }}
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhum dado de tempo médio para o período.
+</p>
+
+{% endif %}
+
+
+<!-- ========================================================= -->
+<!-- ANEXO -->
+<!-- ========================================================= -->
+
+<p class="anexo">
+    <strong>Anexo:</strong> {{ nome_anexo }}
+</p>
+
+
+{% endblock %}

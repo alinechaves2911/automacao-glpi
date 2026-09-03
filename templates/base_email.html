@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+<style>{{ css_inline | safe }}</style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <h1>{% block titulo %}{{ titulo_relatorio }}{% endblock %}</h1>
+        </div>
+
+        <div class="content">
+            {% block conteudo %}{% endblock %}
+        </div>
+
+        <div class="footer">
+            <p>Relatório gerado automaticamente.</p>
+            {% if rodape_linha1 %}<p>{{ rodape_linha1 }}</p>{% endif %}
+            {% if rodape_linha2 %}<p>{{ rodape_linha2 }}</p>{% endif %}
+        </div>
+    </div>
+</body>
+</html>

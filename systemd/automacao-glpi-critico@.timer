@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer GLPI (Critico - Mon,Thu 08:00): %i
+Unit=automacao-glpi-critico@%i.service
+
+[Timer]
+OnCalendar=Mon,Thu *-*-* 08:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

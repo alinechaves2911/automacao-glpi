@@ -1,0 +1,32 @@
+# Trecho de configuração para o zabbix-agent2 (ou zabbix-agent clássico,
+# ajustando o caminho do arquivo) rodando NO SERVIDOR DA AUTOMACAOGLPI —
+# não no servidor Zabbix (192.168.15.12).
+#
+# Onde colar isso:
+#   zabbix-agent2:    /etc/zabbix/zabbix_agent2.conf
+#   zabbix-agent (v1): /etc/zabbix/zabbix_agentd.conf
+#
+# Depois de editar, reiniciar o serviço:
+#   systemctl restart zabbix-agent2   (ou zabbix-agent)
+#
+# Decisão registrada: mesma VLAN entre os dois servidores, sem firewall
+# no meio -> configuração via PASSIVE CHECKS (o Zabbix server, em
+# 192.168.15.12, é quem consulta o agent aqui; mais simples de configurar
+# e de depurar do que active checks). Se algum dia um firewall passar a
+# bloquear a porta 10050 de entrada neste host, a alternativa é trocar
+# para ServerActive= e registrar o host como "active" no Zabbix.
+
+# Quem tem permissão de CONSULTAR este agent (passive checks)
+Server=192.168.15.12
+
+# Nome deste host EXATAMENTE como será cadastrado em
+# Data collection > Hosts no Zabbix. Se o nome aqui não bater com o
+# cadastrado lá, o Zabbix não vai conseguir validar as requisições.
+Hostname=SR-AUTOMACAO-GLPI
+
+# Onde o agent escuta as consultas do server (porta padrão, não precisa mudar
+# a menos que já esteja em uso por outra coisa neste host)
+ListenPort=10050
+
+# Carrega os UserParameters customizados do projeto
+Include=/etc/zabbix/zabbix_agent2.d/*.conf

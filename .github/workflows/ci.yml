@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "develop"]
+  pull_request:
+    branches: ["main", "develop"]
+
+jobs:
+  lint-e-testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+          pip install ruff
+
+      - name: Lint (ruff)
+        run: ruff check .
+
+      - name: Testes (pytest)
+        env:
+          PYTHONPATH: .
+        run: python -m pytest tests/ -v
+
+      - name: Sintaxe de todos os arquivos .py
+        run: |
+          find . -name "*.py" -not -path "./.git/*" | xargs -I{} python3 -c "import ast; ast.parse(open('{}').read())"

@@ -1,0 +1,39 @@
+# Variáveis de ambiente
+.env
+
+# Cache do Python e arquivos compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+ENV/
+
+# Logs de execução
+*.log
+logs/
+
+# Relatórios e planilhas geradas
+*.xlsx
+*.pdf
+
+# Gráficos temporários gerados na execução (services/charts.py)
+charts_tmp/
+charts_tmp/*.png
+
+# Saída do preview_template.py (ferramenta de desenvolvimento)
+preview.html
+
+# Configurações de IDE e SO
+.vscode/
+.idea/
+.DS_Store
+
+# docs/images/*.png (prints usados no README) NÃO são ignorados.
+
+# Metadados internos de sessão do Claude Code
+.claude/

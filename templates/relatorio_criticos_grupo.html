@@ -1,0 +1,22 @@
+{% extends "base_email.html" %}
+
+{% block conteudo %}
+
+<h2 class="secao">Chamados por Prioridade</h2>
+
+{% if tabelas.chamados_criticos %}
+
+    {{ tabelas.chamados_criticos | safe }}
+
+{% else %}
+
+    <p class="empty-msg">Nenhum chamado crítico encontrado.</p>
+
+{% endif %}
+
+
+<p class="anexo">
+    <strong>Anexo:</strong> {{ nome_anexo }}
+</p>
+
+{% endblock %}

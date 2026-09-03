@@ -1,0 +1,12 @@
+[Unit]
+Description=Alerta de falha da automacaoGLPI para %I
+
+[Service]
+Type=oneshot
+User=automacaoglpi
+Group=automacaoglpi
+WorkingDirectory=/opt/automacaoGLPI
+ExecStart=/opt/automacaoGLPI/venv/bin/python3 scripts/alerta_falha.py %I
+
+StandardOutput=journal
+StandardError=journal

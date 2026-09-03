@@ -1,0 +1,158 @@
+/* ===== Base ===== */
+body {
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    line-height: 1.6;
+    background-color: #eef1f5;
+    margin: 0;
+    padding: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ===== Cabeçalho ===== */
+.header {
+    border-bottom: 3px solid #1565c0;
+    padding-bottom: 14px;
+    margin-bottom: 24px;
+}
+.header h1 {
+    color: #0d3b73;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* ===== Títulos de seção ===== */
+h2.secao {
+    color: #0d3b73;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 32px 0 14px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e1e6ec;
+}
+
+/* ===== KPI Cards (via tabela, compatível com Outlook) ===== */
+table.kpi-grid {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px;
+    margin-bottom: 8px;
+}
+table.kpi-grid td.kpi-card {
+    background-color: #1565c0;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: left;
+    color: #ffffff;
+    vertical-align: top;
+}
+.kpi-label {
+    font-size: 12px;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    display: block;
+    margin-bottom: 6px;
+}
+.kpi-value {
+    font-size: 26px;
+    font-weight: 700;
+    display: block;
+}
+/* variação de destaque para métricas de alerta (ex: alta prioridade, fora do prazo) */
+.kpi-card.alerta {
+    background-color: #c62828;
+}
+.kpi-card.sucesso {
+    background-color: #2e7d32;
+}
+.kpi-card.neutro {
+    background-color: #616161;
+}
+
+/* ===== Tabelas de dados ===== */
+table.tabela-relatorio {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+    margin: 10px 0 20px 0;
+}
+table.tabela-relatorio th {
+    background-color: #1565c0;
+    color: #ffffff;
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+}
+table.tabela-relatorio td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #e9ecef;
+    color: #37474f;
+}
+table.tabela-relatorio tr:nth-child(even) {
+    background-color: #f7f9fb;
+}
+
+/* estilo aplicado automaticamente às tabelas geradas via df.to_html() */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+    margin: 10px 0 20px 0;
+}
+th {
+    background-color: #1565c0;
+    color: #ffffff;
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+}
+td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #e9ecef;
+    color: #37474f;
+}
+tr:nth-child(even) {
+    background-color: #f7f9fb;
+}
+
+/* ===== Gráficos ===== */
+.grafico-wrap {
+    text-align: center;
+    margin: 16px 0 28px 0;
+}
+.grafico-wrap img {
+    max-width: 420px;
+    width: 100%;
+}
+
+/* ===== Diversos ===== */
+.badge {
+    background-color: #e1f0ff;
+    color: #0d47a1;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 12px;
+}
+.empty-msg {
+    font-style: italic;
+    color: #78909c;
+    font-weight: 500;
+}
+.footer {
+    font-size: 12px;
+    color: #90a4ae;
+    margin-top: 30px;
+    border-top: 1px solid #e9ecef;
+    padding-top: 16px;
+}

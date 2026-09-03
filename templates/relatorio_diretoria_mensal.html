@@ -1,0 +1,196 @@
+{% extends "base_email.html" %}
+
+{% block conteudo %}
+
+<h2 class="secao">Visão Geral por Grupo</h2>
+
+{% if dados_por_grupo.resumo_geral %}
+
+<table class="kpi-grid">
+  <tr>
+
+    {% for linha in dados_por_grupo.resumo_geral %}
+
+    <td class="kpi-card">
+
+      <span class="kpi-label">
+        {{ linha.grupo }}
+      </span>
+
+      <span class="kpi-value">
+        {{ linha.total_no_mes }}
+      </span>
+
+      <span style="font-size:11px; opacity:0.85; display:block; margin-top:4px;">
+        {{ linha.resolvidos }} resolvidos ·
+        {{ linha.em_aberto }} em aberto
+      </span>
+
+    </td>
+
+    {% endfor %}
+
+  </tr>
+</table>
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhum dado disponível para o período.
+</p>
+
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- SLA POR GRUPO -->
+<!-- ===================================================== -->
+
+<h2 class="secao">SLA por Grupo</h2>
+
+{% if dados_por_grupo.sla_geral %}
+
+<table class="kpi-grid">
+  <tr>
+
+    {% for linha in dados_por_grupo.sla_geral %}
+
+    <td class="kpi-card {% if linha.percentual_sla is none %}neutro{% elif linha.percentual_sla < 80 %}alerta{% else %}sucesso{% endif %}">
+
+      <span class="kpi-label">
+        {{ linha.grupo }}
+      </span>
+
+      <span class="kpi-value">
+        {% if linha.percentual_sla is none %}Sem dados{% else %}{{ linha.percentual_sla }}%{% endif %}
+      </span>
+
+      <span style="font-size:11px; opacity:0.85; display:block; margin-top:4px;">
+        {{ linha.dentro_do_prazo }} no prazo ·
+        {{ linha.fora_do_prazo }} fora do prazo
+      </span>
+
+    </td>
+
+    {% endfor %}
+
+  </tr>
+</table>
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhum dado de SLA disponível para o período.
+</p>
+
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- DETALHAMENTO -->
+<!-- ===================================================== -->
+
+<h2 class="secao">Detalhamento</h2>
+
+{% if tabelas.resumo_geral %}
+    {{ tabelas.resumo_geral | safe }}
+{% else %}
+    <p class="empty-msg">
+        Nenhum resumo disponível para o período.
+    </p>
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- SLA TOTAL -->
+<!-- ===================================================== -->
+
+<h2 class="secao">SLA Total</h2>
+
+{% if graficos_por_cid.grafico_sla_mes %}
+
+<div class="grafico-wrap">
+    <img
+        src="cid:grafico_sla_mes"
+        alt="SLA por grupo"
+    >
+</div>
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhum gráfico de SLA disponível.
+</p>
+
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- SLA POR GRUPO -->
+<!-- ===================================================== -->
+
+<h2 class="secao">SLA por Grupo</h2>
+
+{% if tabelas.sla_geral %}
+    {{ tabelas.sla_geral | safe }}
+{% else %}
+    <p class="empty-msg">
+        Nenhum dado de SLA por grupo disponível.
+    </p>
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- SLA POR TÉCNICO -->
+<!-- ===================================================== -->
+
+<h2 class="secao">SLA por Técnico (Total)</h2>
+
+{% if tabelas.sla_tecnico %}
+    {{ tabelas.sla_tecnico | safe }}
+{% else %}
+    <p class="empty-msg">
+        Nenhum dado de SLA por técnico disponível.
+    </p>
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- POR TÉCNICO -->
+<!-- ===================================================== -->
+
+<h2 class="secao">Volume Total por Técnico</h2>
+
+{% if tabelas.por_tecnico %}
+    {{ tabelas.por_tecnico | safe }}
+{% else %}
+    <p class="empty-msg">
+        Nenhum dado por técnico disponível.
+    </p>
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- POR CATEGORIA -->
+<!-- ===================================================== -->
+
+<h2 class="secao">Por Categoria</h2>
+
+{% if tabelas.por_categoria %}
+    {{ tabelas.por_categoria | safe }}
+{% else %}
+    <p class="empty-msg">
+        Nenhum dado por categoria disponível.
+    </p>
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- ANEXO -->
+<!-- ===================================================== -->
+
+<p style="font-size:12px; color:#9ca3af; margin-top:24px;">
+    Anexo: {{ nome_anexo }}
+</p>
+
+{% endblock %}

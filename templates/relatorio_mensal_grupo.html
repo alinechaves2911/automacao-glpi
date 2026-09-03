@@ -1,0 +1,181 @@
+{% extends "base_email.html" %}
+
+{% block conteudo %}
+
+{% if tabelas.resumo_mensal %}
+
+<table class="kpi-grid">
+    <tr>
+
+        <td class="kpi-card">
+            <span class="kpi-label">ABERTOS NO MÊS</span>
+            <span class="kpi-value">
+                {{ kpis.resumo_total_mes
+                   | default(resumo_total_mes, true)
+                   | default(0, true) }}
+            </span>
+        </td>
+
+        <td class="kpi-card sucesso">
+            <span class="kpi-label">RESOLVIDOS NO MÊS</span>
+            <span class="kpi-value">
+                {{ kpis.resumo_resolvidos_mes
+                   | default(resumo_resolvidos_mes, true)
+                   | default(0, true) }}
+            </span>
+        </td>
+
+        <td class="kpi-card alerta">
+            <span class="kpi-label">EM ABERTO</span>
+            <span class="kpi-value">
+                {{ kpis.resumo_em_aberto_mes
+                   | default(resumo_em_aberto_mes, true)
+                   | default(0, true) }}
+            </span>
+        </td>
+
+    </tr>
+</table>
+
+{% else %}
+
+<p class="empty-msg">
+    Nenhum resumo disponível para este grupo no período.
+</p>
+
+{% endif %}
+
+
+<h2 class="secao">Tendência de prioridade</h2>
+
+{% if graficos_por_cid and graficos_por_cid.grafico_prioridade_mes %}
+
+    <img
+        src="cid:grafico_prioridade_mes"
+        alt="Tendência de prioridade"
+        style="
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px auto 25px auto;
+        "
+    >
+
+{% elif tabelas.tendencia_prioridade %}
+
+    {{ tabelas.tendencia_prioridade | safe }}
+
+{% else %}
+
+    <p class="empty-msg">
+        Nenhum dado de tendência de prioridade para o período.
+    </p>
+
+{% endif %}
+
+
+<h2 class="secao">Atendimento por técnico</h2>
+
+{% if tabelas.por_tecnico %}
+
+    {{ tabelas.por_tecnico | safe }}
+
+{% else %}
+
+    <p class="empty-msg">
+        Nenhum dado de atendimento por técnico para o período.
+    </p>
+
+{% endif %}
+
+
+<h2 class="secao">Atendimento por categoria</h2>
+
+{% if tabelas.por_categoria %}
+
+    {{ tabelas.por_categoria | safe }}
+
+{% else %}
+
+    <p class="empty-msg">
+        Nenhum dado de atendimento por categoria para o período.
+    </p>
+
+{% endif %}
+
+
+<h2 class="secao">SLA Mensal</h2>
+
+{% if graficos_por_cid and graficos_por_cid.grafico_sla_mes %}
+
+    <img
+        src="cid:grafico_sla_mes"
+        alt="SLA do mês"
+        style="
+            max-width: 450px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px auto 25px auto;
+        "
+    >
+
+{% else %}
+
+    <p class="empty-msg">
+        Nenhum gráfico de SLA disponível para o período.
+    </p>
+
+{% endif %}
+
+
+{% if tabelas.sla_mensal %}
+
+    {{ tabelas.sla_mensal | safe }}
+
+{% else %}
+
+    <p class="empty-msg">
+        Nenhum dado de SLA para o período.
+    </p>
+
+{% endif %}
+
+<h2 class="secao">SLA por técnico</h2>
+
+{% if tabelas.sla_tecnico %}
+
+    {{ tabelas.sla_tecnico | safe }}
+
+{% else %}
+
+    <p class="empty-msg">
+        Nenhum dado de SLA por técnico para o período.
+    </p>
+
+{% endif %}
+
+
+
+<h2 class="secao">Tempo médio de atendimento</h2>
+
+{% if tabelas.tempo_medio %}
+
+    {{ tabelas.tempo_medio | safe }}
+
+{% else %}
+
+    <p class="empty-msg">
+        Nenhum dado de tempo médio para o período.
+    </p>
+
+{% endif %}
+
+
+
+<p class="anexo">
+    <strong>Anexo:</strong> {{ nome_anexo }}
+</p>
+
+{% endblock %}

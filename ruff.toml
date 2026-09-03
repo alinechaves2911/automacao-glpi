@@ -1,0 +1,22 @@
+# Configuração do ruff — linter rápido, sem custo de setup complexo.
+# Rodar localmente: pip install ruff --break-system-packages && ruff check .
+
+line-length = 120
+target-version = "py311"
+
+[lint]
+# Conjunto enxuto de regras pra começar (erros reais, não bikeshedding
+# de estilo): erros do pyflakes (F) e bugs comuns (B). Import sorting
+# (I001) foi deixado de fora de propósito: ativar isso reordenaria
+# imports em quase todo arquivo já existente do projeto de uma vez só,
+# um diff gigante sem valor real — se quiser ativar no futuro, faça
+# isso num commit dedicado (`ruff check --select I --fix`), separado de
+# mudanças de lógica.
+select = ["E", "F", "B"]
+ignore = [
+    "E501",  # linha longa — já coberto por line-length, mas strings de
+             # log/SQL longas não valem a pena quebrar à força
+]
+
+[lint.per-file-ignores]
+"tests/*" = ["F401"]  # imports usados só como fixture/side-effect em teste

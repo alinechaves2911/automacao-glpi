@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer GLPI (Anual - 1º de Janeiro 08:00): %i
+Unit=automacao-glpi-anual@%i.service
+
+[Timer]
+OnCalendar=*-01-01 08:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

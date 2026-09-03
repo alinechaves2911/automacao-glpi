@@ -1,0 +1,17 @@
+[Unit]
+Description=Automacao GLPI - Relatorio Semanal: %i
+After=network.target
+OnFailure=automacao-glpi-alerta@%n.service
+
+[Service]
+Type=oneshot
+User=automacaoglpi
+Group=automacaoglpi
+WorkingDirectory=/opt/automacaoGLPI
+ExecStart=/opt/automacaoGLPI/venv/bin/python3 main.py --report %i
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
