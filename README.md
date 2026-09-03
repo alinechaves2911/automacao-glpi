@@ -12,15 +12,37 @@ Os relatórios são disparados por e-mail para os técnicos/coordenadores de cad
 
 ## Capturas de tela
 
-Prints dos e-mails gerados pelo pipeline (dados fictícios, gerados via `preview_template.py`):
+Prints dos e-mails gerados pelo pipeline (dados fictícios, gerados via `preview_template.py`). Clique em cada um para expandir:
 
-| Relatório | Preview |
-|---|---|
-| Consolidado mensal (diretoria) | ![Consolidado mensal da diretoria](docs/images/relatorio_diretoria_mensal.png) |
-| Atendimento mensal por grupo | ![Atendimento mensal por grupo](docs/images/relatorio_mensal_grupo.png) |
-| Atendimento semanal por grupo | ![Atendimento semanal por grupo](docs/images/relatorio_semanal_grupo.png) |
-| Chamados críticos por grupo | ![Chamados críticos por grupo](docs/images/relatorio_criticos_grupo.png) |
-| Atendimento anual por grupo | ![Atendimento anual por grupo](docs/images/relatorio_anual_grupo.png) |
+<details>
+<summary><strong>Consolidado mensal (diretoria)</strong></summary>
+<br>
+<img src="docs/images/relatorio_diretoria_mensal.png" width="480">
+</details>
+
+<details>
+<summary><strong>Atendimento mensal por grupo</strong></summary>
+<br>
+<img src="docs/images/relatorio_mensal_grupo.png" width="480">
+</details>
+
+<details>
+<summary><strong>Atendimento semanal por grupo</strong></summary>
+<br>
+<img src="docs/images/relatorio_semanal_grupo.png" width="480">
+</details>
+
+<details>
+<summary><strong>Chamados críticos por grupo</strong></summary>
+<br>
+<img src="docs/images/relatorio_criticos_grupo.png" width="480">
+</details>
+
+<details>
+<summary><strong>Atendimento anual por grupo</strong></summary>
+<br>
+<img src="docs/images/relatorio_anual_grupo.png" width="480">
+</details>
 
 ## Ambiente de produção
 
